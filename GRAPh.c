@@ -32,7 +32,30 @@ graphNode* vertexExistedKey(char* _key, GRAPH** graph)
 
 	return NULL;
 }
+int edgeValue(int _id1, int _id2, GRAPH* graph)
+{
+	graphNode* current = graph -> node;
 
+	while(current != NULL)
+	{
+		if(current -> id == _id1)
+		{
+			JRB tmp;
+			jrb_traverse(tmp, current -> Adjcency)
+			{
+				if(tmp -> key.i == _id2)
+				{
+					return tmp -> val.i;
+				}
+			}
+			break;
+		}
+
+		current = current -> next;
+	}
+
+	return -1;
+}
 void addPair(int _key, int _value, PAIR** root)
 {
 	PAIR* current = *root;
@@ -299,7 +322,7 @@ void find_path(int _end, int** path, int size)
 
 		printf("%d\n", path[0][_end - 1]);
 		way = realloc(way, (++s_size) * sizeof(int));
-		way[s_size - 1] = _end - 1;
+		way[s_size - 1] = _end -1;
 
 		do
 		{
@@ -313,6 +336,32 @@ void find_path(int _end, int** path, int size)
 			printf("%d -> ", way[i] + 1);
 		}
 		printf("%d\n", way[0] + 1);
+	}
+}
+void find_pathc(int _end, int** path, int size,GRAPH* graph)
+{
+	int* way = NULL;
+	int s_size = 0;
+	if(path[0][_end - 1] != 0)
+	{
+		int next = path[1][_end - 1];
+
+		printf("%d\n", path[0][_end - 1]);
+		way = realloc(way, (++s_size) * sizeof(int));
+		way[s_size - 1] = _end - 1;
+
+		do
+		{
+			way = realloc(way, (++s_size) * sizeof(int));
+			way[s_size - 1] = next;
+			next = path[1][next];
+		}while(next != -1);
+
+		for (int i = s_size - 1; i > 0; --i)
+		{
+			printf("%s\n", return_key(way[i] + 1,graph));
+		}
+		printf("%s\n", return_key(way[0] + 1,graph));
 	}
 }
 

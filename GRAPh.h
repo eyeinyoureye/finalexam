@@ -69,5 +69,9 @@ PAIR* findPair(int _key, PAIR** pair);
 void addInfor(int _store_id, int _product_id, int quantity, GRAPH** graph);
 int return_id(const char* _key, GRAPH* graph);
 char* return_key(int _id, GRAPH* graph);
+//tra ve trọng số của cạnh
+int edgeValue(int _id1, int _id2, GRAPH* graph);
+//tra ve doan duong di ngan nhat the ten
+void find_pathc(int _end, int** path, int size, GRAPH* graph);
 
 #endif
